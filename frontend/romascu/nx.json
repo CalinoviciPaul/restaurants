@@ -1,0 +1,22 @@
+{
+  "npmScope": "romascu",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "invoice-importing": {
+      "tags": []
+    },
+    "invoice-importing-e2e": {
+      "tags": [],
+      "implicitDependencies": ["invoice-importing"]
+    }
+  }
+}

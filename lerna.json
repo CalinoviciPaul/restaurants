@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "frontend/romascu",
+   /* "iriro-libs/frontend/libs/primeng-utils-module",
+    "iriro-libs/frontend/libs/shared-components",
+    "iriro-libs/frontend/libs/url-builder-module"*/
+  ],
+  "version": "7.0.0",
+  "lerna": "3.4.0"
+}

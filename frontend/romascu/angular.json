@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "invoice-importing": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/invoice-importing",
+      "sourceRoot": "apps/invoice-importing/src",
+      "prefix": "romascu",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/invoice-importing",
+            "index": "apps/invoice-importing/src/index.html",
+            "main": "apps/invoice-importing/src/main.ts",
+            "polyfills": "apps/invoice-importing/src/polyfills.ts",
+            "tsConfig": "apps/invoice-importing/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/invoice-importing/src/favicon.ico",
+              "apps/invoice-importing/src/assets"
+            ],
+            "styles": ["apps/invoice-importing/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/invoice-importing/src/environments/environment.ts",
+                  "with": "apps/invoice-importing/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "invoice-importing:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "invoice-importing:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "invoice-importing:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/invoice-importing/tsconfig.app.json",
+              "apps/invoice-importing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/invoice-importing/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/invoice-importing/jest.config.js",
+            "tsConfig": "apps/invoice-importing/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/invoice-importing/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "invoice-importing-e2e": {
+      "root": "apps/invoice-importing-e2e",
+      "sourceRoot": "apps/invoice-importing-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/invoice-importing-e2e/cypress.json",
+            "tsConfig": "apps/invoice-importing-e2e/tsconfig.e2e.json",
+            "devServerTarget": "invoice-importing:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "invoice-importing:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/invoice-importing-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/invoice-importing-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "invoice-importing"
+}
